@@ -1,13 +1,40 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<view>{{msg}}</view>
+<button bindtap='clickMe'>点击我</button>
+
+<!-- 内容 -->
+<view>{{message}}</view>
+
+<!-- 组件属性(需要在双引号之内) -->
+<view id='item-{{id}}'>
+<!-- 关键字(需要在双引号之内)
+true：boolean 类型的 true，代表真值。
+false： boolean 类型的 false，代表假值。 -->
+<checkbox checked="{{false}}"></checkbox>
 </view>
+<!-- 控制属性(需要在双引号之内) -->
+<view wx:if="{{condition}}"></view>
+
+<!-- 运算 -->
+<!-- 1.三元运算 -->
+<view hidden='{{fIag ? true : false}}'Hidden></view>
+
+<!-- 2.算数运算 -->
+<view>{{a+b}} + {{c}} + d </view>
+
+<!-- 逻辑判断 -->
+<view wx:if="{{length > 5}}"></view>
+
+<!-- 字符串运算 -->
+<view>{{"Hello" + name}}</view>
+
+<!-- 数据路径运算 -->
+<view>{{object.key}} {{array[0]}}</view>
+
+<!-- 组合 -->
+<!-- 也可以在 Mustache 内直接进行组合，构成新的对象或者数组。 -->
+<view wx:for="{{[zero,1,2,3,4]}}" wx:key="a">{{item}}</view>
+
+<!-- 对象 -->
+<!-- <template is="objectCombine" data="{{for:aa,bar:bb}}" ></template> -->
+<template is="objectCombine" data="{{...obj1, ...obj2, a, c: 6}}"></template>
